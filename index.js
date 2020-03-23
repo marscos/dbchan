@@ -1,15 +1,34 @@
+// Environment variables
 require('dotenv').config()
+const DISCORD_KEY = process.env.DISCORD_KEY
+const BOT_CLIENT_ID = process.env.BOT_CLIENT_ID
+
+// External dependencies
 const Discord = require('discord.js')
 const bot = new Discord.Client()
 
-const TOKEN = process.env.TOKEN
+// Parameter handlers
+const queryMovie = require('./src/movies')
+const helpMessage = require('./src/help')
 
-bot.on('message', msg => {
-    if (msg.mentions.has(process.env.BOT_CLIENT_ID) ) {
-        let call = msg.content.match(`<@!${process.env.BOT_CLIENT_ID}>(.*)`)[1].trim().split(/\s+/)
-        let command = call.shift()
-        let param = call.join(" ")
-        console.info(`${command}, ${param}`)
+const commands = { 
+    "m": queryMovie,
+    "h": _ => helpMessage,
+}
+
+bot.on('message', async (msg) => {
+    if (msg.mentions.has(BOT_CLIENT_ID) ) {
+        let call = msg.content.match(`<@!${BOT_CLIENT_ID}>(.*)`)[1].trim().split(/\s+/)
+        let queryParameter = call.shift()
+        let query = call.join(" ")
+        console.info(`${msg.author.username} wants to look ${queryParameter} up, query: ${query}`)
+        if (queryParameter in commands) {
+            command = commands[queryParameter]
+            let result = await command(query)
+            msg.channel.send(result)
+        } else {
+            msg.channel.send(helpMessage)
+        }
     }
 })
 
@@ -17,7 +36,7 @@ bot.on('ready', () => {
     console.info(`Logged in as ${bot.user.tag}!`)
 })
 
-bot.login(TOKEN)
+bot.login(DISCORD_KEY)
 
 process.on('exit', () => {
     bot.destroy()
