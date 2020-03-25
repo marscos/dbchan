@@ -1,5 +1,5 @@
 require('dotenv').config()
-const Discord = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const graphqlGot = require('graphql-got')
 const sanitizeHtml = require('sanitize-html')
 
@@ -36,7 +36,7 @@ const getResultMessage = (media) => {
   const displayTitle = `${media.title.english ? media.title.english : media.title.native ? media.title.native : media.title.romaji}` +
   ` ${(media.title.english || media.title.native) && media.title.english !== media.title.romaji ? '(' + media.title.romaji + ')' : ''}`
 
-  const EmbedMessage = new Discord.MessageEmbed()
+  return new MessageEmbed()
     .setColor('#02a9ff')
     .setTitle(displayTitle)
     .setURL(media.siteUrl)
@@ -49,8 +49,6 @@ const getResultMessage = (media) => {
     )
     .setTimestamp()
     .setFooter('Provided by AniList', 'https://anilist.co/img/icons/android-chrome-512x512.png')
-
-  return EmbedMessage
 }
 
 const searchAnime = async (title) => {
