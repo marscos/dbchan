@@ -11,8 +11,8 @@ const getResultMessage = (definition) => {
     .addFields(
       { name: 'Example', value: definition.example },
       { name: 'Author', value: definition.author, inline: true },
-      { name: 'Upvotes:', value: definition.thumbs_up, inline: true },
-      { name: 'Downvotes', value: definition.thumbs_down, inline: true },
+      { name: ':thumbsup:', value: definition.thumbs_up, inline: true },
+      { name: ':thumbsdown:', value: definition.thumbs_down, inline: true },
     )
     .setTimestamp()
     .setFooter('Provided by Urban Dictionary', 'https://i.imgur.com/WL9bm5v.png')
