@@ -12,11 +12,13 @@ const MoviesController = require('./controllers/MoviesController')
 const AnimeController = require('./controllers/AnimeController')
 const MiscController = require('./controllers/MiscController')
 const WikiController = require('./controllers/WikiController')
+const UrbandictionaryController = require('./controllers/UrbandictionaryController')
 
 const commands = {
   m: MoviesController.searchMovie,
   a: AnimeController.searchAnime,
   w: WikiController.searchWiki,
+  ud: UrbandictionaryController.defineTerm,
   h: MiscController.helpMessage
 }
 

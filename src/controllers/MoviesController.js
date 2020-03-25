@@ -33,7 +33,7 @@ const searchMovie = async (query) => {
       const movie = response.results[0]
       return getResultMessage(movie)
     } else {
-      return `No movies found by looking for "\`${query}\`" in TMDb.`
+      return `No movies were found by looking for "\`${query}\`" in TMDb.`
     }
   } catch (error) {
     console.log(error)

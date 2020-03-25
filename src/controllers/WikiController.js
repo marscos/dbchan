@@ -29,7 +29,7 @@ const getResultMessage = (page) => {
 const searchWiki = async (query) => {
   const queryParams = { gsrsearch: query, ...defaultQueryParams, gsrlimit: '1' }
   const response = await got(API_URL, { searchParams: queryParams }).json()
-  if (!response.query) { return `No pages were found searching for ${query}` }
+  if (!response.query) { return `No pages were found searching for ${query}.` }
   const pages = response.query.pages
   console.log(queryParams)
   for (const pageId in pages) {
