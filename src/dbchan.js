@@ -8,12 +8,14 @@ const Discord = require('discord.js')
 const bot = new Discord.Client()
 
 // Parameter handlers
-const queryMovie = require('./src/movies')
-const helpMessage = require('./src/help')
+const MoviesController = require('./controllers/MoviesController')
+const AnimeController = require('./controllers/AnimeController')
+const MiscController = require('./controllers/MiscController')
 
 const commands = { 
-    "m": queryMovie,
-    "h": _ => helpMessage,
+    "m": MoviesController.searchMovie,
+    "a": AnimeController.searchAnime,
+    "h": MiscController.helpMessage,
 }
 
 bot.on('message', async (msg) => {
@@ -27,7 +29,7 @@ bot.on('message', async (msg) => {
             let result = await command(query)
             msg.channel.send(result)
         } else {
-            msg.channel.send(helpMessage)
+            msg.channel.send(MiscController.helpMessage)
         }
     }
 })

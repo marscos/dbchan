@@ -1,1 +1,0 @@
-module.exports = ":scroll:**List of available query parameters**:\n:mag_right:**Movies**: `m`"
