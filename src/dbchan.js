@@ -33,7 +33,7 @@ bot.on('message', async (msg) => {
                 msg.channel.send("Service Unavailable.")
             }
         } else {
-            msg.channel.send(MiscController.helpMessage)
+            msg.channel.send(MiscController.helpMessage())
         }
     }
 })
