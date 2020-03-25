@@ -27,7 +27,11 @@ bot.on('message', async (msg) => {
         if (queryParameter in commands) {
             command = commands[queryParameter]
             let result = await command(query)
-            msg.channel.send(result)
+            try { 
+                msg.channel.send(result)
+            } catch (e) {
+                msg.channel.send("Service Unavailable.")
+            }
         } else {
             msg.channel.send(MiscController.helpMessage)
         }

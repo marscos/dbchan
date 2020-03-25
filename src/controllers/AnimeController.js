@@ -33,11 +33,11 @@ query ($title: String, $offset: Int, $pageSize: Int) {
 `
 
 const getResultMessage = (media) => {
-  const displayTitle = `${media.type == 'MANGA' ? ":books:" : ":movie_camera:" } ${media.title.english ? media.title.english : media.title.native ? media.title.native : media.title.romaji}`
+  const displayTitle = `${media.title.english ? media.title.english : media.title.native ? media.title.native : media.title.romaji}`
   + ` ${(media.title.english || media.title.native) && media.title.english !== media.title.romaji ? '(' + media.title.romaji + ')' : '' }`
 
   const EmbedMessage = new Discord.MessageEmbed()
-    .setColor('#6cf0e2')
+    .setColor('#02a9ff')
     .setTitle(displayTitle)
     .setURL(media.siteUrl)
     .setDescription(sanitizeHtml(media.description, { allowedTags: [] }))
@@ -48,7 +48,7 @@ const getResultMessage = (media) => {
       { name: 'Status', value: `\n${media.status} → ${media.type == 'MANGA' ? media.chapters == null ? '???' : media.chapters : media.episodes} ${media.type == 'MANGA' ? 'Chapters' : 'Episodes'}`, inline: true },
     )
     .setTimestamp()
-    .setFooter('Provided by AniList', 'https://anilist.co/img/icons/android-chrome-512x512.png');
+    .setFooter('Provided by AniList', 'https://anilist.co/img/icons/android-chrome-512x512.png')
 
   return EmbedMessage
 }
