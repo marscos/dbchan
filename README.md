@@ -3,9 +3,7 @@
 
 Tag the bot with where and what you want to search, and it sends a pretty message with more info, along with a link.
 
-![Usage example](https://puu.sh/Fp0Xi/87428bdfe4.png)
-
-### Currently, the bot can only post the first search result. This is an obvious limitation and going to change soon.
+### Currently, the bot posts the first search result only.
 
 ---
 ## Demonstrations
